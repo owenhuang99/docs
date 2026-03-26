@@ -4,16 +4,18 @@ description: "How my retrieval-augmented generation pipeline works"
 ---
 
 ## What It Does
-This system answers questions by searching my documents 
-and passing the results to an LLM.
-TESTING 
+
+This system answers questions by searching my documents and passing the results to an LLM. TESTING
 
 ## My Stack
+
 - **Vector DB:** ChromaDB
 - **LLM:** Claude
 - **Framework:** LangChain
+- TESTING
 
 ## How To Run It
+
 ```python
 from rag import query
 response = query("your question here")
@@ -21,5 +23,6 @@ print(response)
 ```
 
 ## Things I Always Forget
+
 - Re-embed documents if you change the embedding model
 - Chunk size is set to 512 tokens
