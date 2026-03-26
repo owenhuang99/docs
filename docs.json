@@ -47,7 +47,8 @@
           },
           {
             "group": "My AI Projects",
-            "pages": ["rag-system"]
+            "pages": ["test-ai-project/rag-system"
+          ,"test-ai-project/test-workflow-update"]
           }
         ]
       },
