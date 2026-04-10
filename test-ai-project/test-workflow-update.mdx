@@ -5,6 +5,16 @@ description: "Track recent workflow updates and changes to the AI project docume
 
 ## Recent updates
 
+### Sequential tagging with relationship preservation
+
+The knowledge tagging system now uses sequential learning paths instead of flat L1-L6 category arrays. This change was introduced in the `feature/l1-l6-simple` branch of the Unfair Advantage project.
+
+- **New `sequential_paths` format**: each path is an ordered array representing a coherent learning progression from L3 through L6 (e.g., `["Memory", "Long-term Memory", "Persistence", "Vector Storage"]`)
+- **Automatic relationship extraction**: the system derives L3-to-L4, L4-to-L5, and L5-to-L6 mappings directly from path structure, guaranteeing mathematical correctness
+- **~90% speed recovery**: processing performance is nearly back to baseline after the restructuring
+- **Backward compatible**: existing L3-L6 flat arrays and the Streamlit UI continue to work without changes
+- **Data storage updated**: `data/links_store_v2.csv` now includes `sequential_paths` and `knowledge_paths` columns
+
 ### Workflow update page title fix
 
 The `test-workflow-update.mdx` page title was corrected:
