@@ -29,6 +29,14 @@ The `rag-system.mdx` page was cleaned up to remove test artifacts and improve co
 - Applied sentence case to all section headings
 - Switched to second-person voice for the page description
 
+### Test suite and dev container setup
+
+The project now includes a test suite and a dev container configuration for streamlined development:
+
+- **Test suite**: added `test_sequential_tagging.py`, `test_sequential_minimal.py`, `test_simplified_relationships.py`, `test_l1_l6_simple.py`, and `test_app_startup.py` covering sequential path generation, relationship extraction, and app startup filtering logic
+- **Dev container**: added `.devcontainer/devcontainer.json` with Python 3.11, automatic dependency installation, and Streamlit auto-launch on port 8501
+- **Speed benchmarking**: added `speed_test.py` for profiling tagging performance across batch sizes
+
 ### RAG system documentation formatting
 
 The `rag-system.mdx` page was updated with improved formatting:
