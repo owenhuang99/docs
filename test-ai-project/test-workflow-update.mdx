@@ -1,33 +1,9 @@
 ---
-title: "Workflow updates"
-description: "Track recent workflow updates and changes to the AI project documentation"
+title: Workflow updates
+description: Track recent workflow updates and changes to the Unfair Advantage project
 ---
 
 ## Recent updates
-
-### Sequential tagging with relationship preservation
-
-The knowledge tagging system now uses sequential learning paths instead of flat L1-L6 category arrays. This change was introduced in the `feature/l1-l6-simple` branch of the Unfair Advantage project.
-
-- **New `sequential_paths` format**: each path is an ordered array representing a coherent learning progression from L3 through L6 (e.g., `["Memory", "Long-term Memory", "Persistence", "Vector Storage"]`)
-- **Automatic relationship extraction**: the system derives L3-to-L4, L4-to-L5, and L5-to-L6 mappings directly from path structure, guaranteeing mathematical correctness
-- **~90% speed recovery**: processing performance is nearly back to baseline after the restructuring
-- **Backward compatible**: existing L3-L6 flat arrays and the Streamlit UI continue to work without changes
-- **Data storage updated**: `data/links_store_v2.csv` now includes `sequential_paths` and `knowledge_paths` columns
-
-### Workflow update page title fix
-
-The `test-workflow-update.mdx` page title was corrected:
-
-- Removed leftover test artifact from the page title
-
-### RAG system content cleanup
-
-The `rag-system.mdx` page was cleaned up to remove test artifacts and improve consistency:
-
-- Removed leftover test strings ("TESTING 2", "Testing web editor chang e")
-- Applied sentence case to all section headings
-- Switched to second-person voice for the page description
 
 ### Test suite and dev container setup
 
@@ -37,11 +13,13 @@ The project now includes a test suite and a dev container configuration for stre
 - **Dev container**: added `.devcontainer/devcontainer.json` with Python 3.11, automatic dependency installation, and Streamlit auto-launch on port 8501
 - **Speed benchmarking**: added `speed_test.py` for profiling tagging performance across batch sizes
 
-### RAG system documentation formatting
+### Sequential tagging with relationship preservation
 
-The `rag-system.mdx` page was updated with improved formatting:
+The knowledge tagging system now uses sequential learning paths instead of flat L1-L6 category arrays. This change was introduced in the `feature/l1-l6-simple` branch.
 
-- Added consistent spacing between section headings and content
-- Consolidated multiline text into properly formatted paragraphs under **What it does**
-- Improved readability across all sections including **My stack**, **How to run it**, and **Things I always forget**
+- **New `sequential_paths` format**: each path is an ordered array representing a coherent learning progression from L3 through L6 (e.g., `["Memory", "Long-term Memory", "Persistence", "Vector Storage"]`)
+- **Automatic relationship extraction**: the system derives L3-to-L4, L4-to-L5, and L5-to-L6 mappings directly from path structure, guaranteeing mathematical correctness
+- **~90% speed recovery**: processing performance is nearly back to baseline after the restructuring
+- **Backward compatible**: existing L3-L6 flat arrays and the Streamlit UI continue to work without changes
+- **Data storage updated**: `data/links_store_v2.csv` now includes `sequential_paths` and `knowledge_paths` columns
 
