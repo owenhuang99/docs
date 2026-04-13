@@ -5,6 +5,30 @@ description: Track recent workflow updates and changes to the Unfair Advantage p
 
 ## Recent updates
 
+### UI filtering and display overhaul
+
+The Streamlit interface now uses the L1/L2 taxonomy for filtering and displays L3-L6 data with styled formatting.
+
+- **L1/L2 filters replace categories/tags**: you filter the historic links table by L1 (Domain) and L2 (Category) instead of the old `categories` and `tags` multi-selects
+- **Pill-style tag display**: L3-L6 arrays render as colored pill badges in the table, and knowledge paths display as arrow-separated progressions (e.g., `Tech → GenAI → LLMs → Fine-tuning`)
+- **Clickable URLs**: the URL column now uses `st.column_config.LinkColumn` so links are clickable directly in the table
+
+### CSV schema migration to v2
+
+The default data store has moved from `data/links_store.csv` to `data/links_store_v2.csv`. The new schema replaces the `categories` and `tags` columns with structured taxonomy fields.
+
+- **New columns**: `L1`, `L2`, `L3`, `L4`, `L5`, `L6`, `sequential_paths`, and `knowledge_paths`
+- **Serialization updated**: `save_csv` and `load_csv` now handle the new array and dict columns, including nested JSON for `sequential_paths` and `knowledge_paths`
+
+### Sequential tagging with relationship preservation
+
+The knowledge tagging system now uses sequential learning paths instead of flat category arrays. A new `process_sequential_paths_with_relationships()` function in `core.py` handles this.
+
+- **New `sequential_paths` format**: each path is an ordered array representing a coherent learning progression from L3 through L6 (e.g., `["Memory", "Long-term Memory", "Persistence", "Vector Storage"]`)
+- **Automatic relationship extraction**: the system derives L3-to-L4, L4-to-L5, and L5-to-L6 mappings directly from the path structure, returning a relationships map alongside the extracted arrays
+- **LLM prompt updated**: the `STRICT_JSON_RULES` prompt now requests `L1`, `L2`, and `sequential_paths` instead of `categories` and `tags`
+- **~90% speed recovery**: processing performance is nearly back to baseline after the restructuring
+
 ### Test suite and dev container setup
 
 The project now includes a test suite and a dev container configuration for streamlined development:
@@ -12,14 +36,4 @@ The project now includes a test suite and a dev container configuration for stre
 - **Test suite**: added `test_sequential_tagging.py`, `test_sequential_minimal.py`, `test_simplified_relationships.py`, `test_l1_l6_simple.py`, and `test_app_startup.py` covering sequential path generation, relationship extraction, and app startup filtering logic
 - **Dev container**: added `.devcontainer/devcontainer.json` with Python 3.11, automatic dependency installation, and Streamlit auto-launch on port 8501
 - **Speed benchmarking**: added `speed_test.py` for profiling tagging performance across batch sizes
-
-### Sequential tagging with relationship preservation
-
-The knowledge tagging system now uses sequential learning paths instead of flat L1-L6 category arrays. This change was introduced in the `feature/l1-l6-simple` branch.
-
-- **New `sequential_paths` format**: each path is an ordered array representing a coherent learning progression from L3 through L6 (e.g., `["Memory", "Long-term Memory", "Persistence", "Vector Storage"]`)
-- **Automatic relationship extraction**: the system derives L3-to-L4, L4-to-L5, and L5-to-L6 mappings directly from path structure, guaranteeing mathematical correctness
-- **~90% speed recovery**: processing performance is nearly back to baseline after the restructuring
-- **Backward compatible**: existing L3-L6 flat arrays and the Streamlit UI continue to work without changes
-- **Data storage updated**: `data/links_store_v2.csv` now includes `sequential_paths` and `knowledge_paths` columns
 
