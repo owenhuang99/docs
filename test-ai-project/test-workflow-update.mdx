@@ -37,3 +37,15 @@ The project now includes a test suite and a dev container configuration for stre
 - **Dev container**: added `.devcontainer/devcontainer.json` with Python 3.11, automatic dependency installation, and Streamlit auto-launch on port 8501
 - **Speed benchmarking**: added `speed_test.py` for profiling tagging performance across batch sizes
 
+### NumPy dependency added
+
+The application now imports `numpy` in `app.py`. You need to install it alongside the existing dependencies:
+
+```bash
+pip install numpy
+```
+
+### Workflow test utility
+
+A standalone test utility `test_mintlify_work.py` has been added for verifying the CI/CD workflow pipeline. This script is not part of the main application logic and is used for integration testing purposes only.
+
