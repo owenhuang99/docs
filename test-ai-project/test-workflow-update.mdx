@@ -39,13 +39,13 @@ The project now includes a test suite and a dev container configuration for stre
 
 ### NumPy dependency added
 
-The application now imports `numpy` in `app.py`. You need to install it alongside the existing dependencies:
+`app.py` now imports `numpy`. Although the library is not yet called directly in application logic, you should install it to avoid import errors at startup:
 
 ```bash
 pip install numpy
 ```
 
-### Workflow test utility
+### Workflow test script
 
-A standalone test utility `test_mintlify_work.py` has been added for verifying the CI/CD workflow pipeline. This script is not part of the main application logic and is used for integration testing purposes only.
+A standalone script `test_mintlify_work.py` has been added to the repository root. It contains a simple die-rolling function used to verify that the CI/CD pipeline runs Python scripts correctly. This file is not part of the main application.
 
