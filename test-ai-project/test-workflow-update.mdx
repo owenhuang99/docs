@@ -15,7 +15,13 @@ The Streamlit interface now uses the L1/L2 taxonomy for filtering and displays L
 
 ### CSV schema migration to v2
 
-The default data store has moved from `data/links_store.csv` to `data/links_store_v2.csv`. The new schema replaces the `categories` and `tags` columns with structured taxonomy fields.
+The default data store has moved from `data/links_store.csv` to `data/links_store_v2.csv`. The new schema replaces the `categories` and `tags` columns with structured taxonomy fields. The path constants in `core.py` are now:
+
+- `CSV_PATH` — `data/links_store_v2.csv` (primary data store)
+- `LINKS_CSV` — `data/links_store.csv` (legacy)
+- `CARDS_CSV` — `data/cards_store.csv` (flashcard data)
+
+**Schema changes:**
 
 - **New columns**: `L1`, `L2`, `L3`, `L4`, `L5`, `L6`, `sequential_paths`, and `knowledge_paths`
 - **Serialization updated**: `save_csv` and `load_csv` now handle the new array and dict columns, including nested JSON for `sequential_paths` and `knowledge_paths`
@@ -39,13 +45,15 @@ The project now includes a test suite and a dev container configuration for stre
 
 ### NumPy dependency added
 
-`app.py` now imports `numpy`. Although the library is not yet called directly in application logic, you should install it to avoid import errors at startup:
+`app.py` now imports `numpy` (line 9). Although the library is not yet called directly in application logic, you must install it to avoid import errors at startup. Note that `numpy` is not included in `requirements.txt`, so you need to install it separately:
 
 ```bash
 pip install numpy
 ```
 
+If you use the dev container, add `numpy` to `requirements.txt` so it installs automatically during setup.
+
 ### Workflow test script
 
-A standalone script `test_mintlify_work.py` has been added to the repository root. It contains a simple die-rolling function used to verify that the CI/CD pipeline runs Python scripts correctly. This file is not part of the main application.
+A standalone script `test_mintlify_work.py` has been added to the repository root. It contains a simple die-rolling function (using Python's `random.randint`) used to verify that the CI/CD pipeline runs Python scripts correctly. This file is not part of the main application and has no project dependencies.
 
