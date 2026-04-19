@@ -43,9 +43,18 @@ The project now includes a test suite and a dev container configuration for stre
 - **Dev container**: added `.devcontainer/devcontainer.json` with Python 3.11, automatic dependency installation, and Streamlit auto-launch on port 8501
 - **Speed benchmarking**: added `speed_test.py` for profiling tagging performance across batch sizes
 
+### Flashcard review interface
+
+The "Review Cards" page now features a styled flashcard UI with flip animations and spaced repetition logic.
+
+- **CSS flashcard design**: cards render with gradient backgrounds, a 3D flip animation on reveal, and responsive pill-style action buttons ("I Know This" / "Review Again")
+- **Spaced repetition queue**: a two-queue system (`main_q` and `again_q`) cycles cards across rounds — cards you defer move to `again_q` and return in the next round
+- **Progress tracking**: a progress bar and round counter display how many cards remain, how many are deferred, and the current round index
+- **Session settings**: an expandable panel lets you reset learning progress (all URLs or last-added URL) and set the review scope to focus on a specific URL's cards
+
 ### NumPy dependency added
 
-`app.py` now imports `numpy` (line 9). Although the library is not yet called directly in application logic, you must install it to avoid import errors at startup. Note that `numpy` is not included in `requirements.txt`, so you need to install it separately:
+`app.py` imports `numpy` (line 9). Although the library is not yet called directly in application logic, you must install it to avoid import errors at startup. `numpy` is not listed in `requirements.txt`, so install it separately:
 
 ```bash
 pip install numpy
@@ -53,7 +62,17 @@ pip install numpy
 
 If you use the dev container, add `numpy` to `requirements.txt` so it installs automatically during setup.
 
+### Dev container configuration details
+
+The `.devcontainer/devcontainer.json` uses Python 3.11 (`mcr.microsoft.com/devcontainers/python:1-3.11-bullseye`) and runs Streamlit with CORS and XSRF protection disabled for local development:
+
+```bash
+streamlit run app.py --server.enableCORS false --server.enableXsrfProtection false
+```
+
+The setup command also installs system packages from `packages.txt` if present, alongside the Python dependencies from `requirements.txt`.
+
 ### Workflow test script
 
-A standalone script `test_mintlify_work.py` has been added to the repository root. It contains a simple die-rolling function (using Python's `random.randint`) used to verify that the CI/CD pipeline runs Python scripts correctly. This file is not part of the main application and has no project dependencies.
+A standalone script `test_mintlify_work.py` at the repository root contains a simple die-rolling function (using Python's `random.randint`) used to verify that the CI/CD pipeline runs Python scripts correctly. This file is not part of the main application and has no project dependencies.
 
