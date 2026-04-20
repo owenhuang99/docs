@@ -12,6 +12,8 @@ The Streamlit interface now uses the L1/L2 taxonomy for filtering and displays L
 - **L1/L2 filters replace categories/tags**: you filter the historic links table by L1 (Domain) and L2 (Category) instead of the old `categories` and `tags` multi-selects
 - **Pill-style tag display**: L3-L6 arrays render as colored pill badges in the table, and knowledge paths display as arrow-separated progressions (e.g., `Tech → GenAI → LLMs → Fine-tuning`)
 - **Clickable URLs**: the URL column now uses `st.column_config.LinkColumn` so links are clickable directly in the table
+- **Knowledge hierarchy in link analysis**: after processing a new link, the analysis panel displays L1 through L6 values in a labeled hierarchy instead of flat categories and tags
+- **Persistent process state**: the "Add Links" page tracks processing state via `st.session_state.process_clicked`, so the results panel persists across reruns. A "Reset to Historic Links" button returns to the default filter view
 
 ### CSV schema migration to v2
 
@@ -64,7 +66,7 @@ If you use the dev container, add `numpy` to `requirements.txt` so it installs a
 
 ### Dev container configuration details
 
-The `.devcontainer/devcontainer.json` uses Python 3.11 (`mcr.microsoft.com/devcontainers/python:1-3.11-bullseye`) and runs Streamlit with CORS and XSRF protection disabled for local development:
+The `.devcontainer/devcontainer.json` uses Python 3.11 (`mcr.microsoft.com/devcontainers/python:1-3.11-bullseye`) and runs Streamlit with CORS and XSRF protection disabled for local development. It also includes VS Code extensions (`ms-python.python` and `ms-python.vscode-pylance`) and Codespaces configuration that auto-opens `README.md` and `app.py`.
 
 ```bash
 streamlit run app.py --server.enableCORS false --server.enableXsrfProtection false
