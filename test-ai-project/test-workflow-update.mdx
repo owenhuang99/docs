@@ -76,7 +76,21 @@ The setup command also installs system packages from `packages.txt` if present, 
 
 ### Workflow test script
 
-A standalone script `test_mintlify_work.py` at the repository root verifies that the CI/CD pipeline can execute Python scripts. It contains a `roll_die()` function that returns a random integer between 1 and 6 using `random.randint`. This file is not part of the main application and relies only on the Python standard library.
+A standalone script `test_mintlify_work.py` at the repository root verifies that the CI/CD pipeline can execute Python scripts. It contains a `roll_die()` function that simulates rolling a six-sided die, returning a random integer between 1 and 6 using `random.randint(1, 6)`. The script runs the function and prints the result when executed directly.
+
+This file is not part of the main application and relies only on the Python standard library (`random` module).
+
+```python
+def roll_die():
+  """
+  Simulates rolling a six-sided die.
+
+  Returns:
+      int: A random integer between 1 and 6, inclusive.
+  """
+  result = random.randint(1, 6)
+  return result
+```
 
 ```bash
 python test_mintlify_work.py
