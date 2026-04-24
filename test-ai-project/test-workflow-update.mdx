@@ -78,7 +78,7 @@ The setup command also installs system packages from `packages.txt` if present, 
 
 A standalone script `test_mintlify_work.py` at the repository root verifies that the CI/CD pipeline can execute Python scripts. It contains a `roll_die()` function that simulates rolling a six-sided die, returning a random integer between 1 and 6 using `random.randint(1, 6)`. The script runs the function and prints the result via an f-string (`f"You rolled a {roll}"`) when executed directly.
 
-This file is not part of the main application and relies only on the Python standard library (`random` module). An inline comment in the source notes that `randint()` includes both the start and stop values in the possible outcomes.
+This file is not part of the main application and relies only on the Python standard library (`random` module). Inline comments in the source note that `randint()` includes both the start and stop values in the possible outcomes, and mark the `__main__` block as the point where the function is executed and the outcome is printed.
 
 ```python
 import random
@@ -94,6 +94,7 @@ def roll_die():
   result = random.randint(1, 6)
   return result
 
+# Execute the function and print the outcome
 if __name__ == "__main__":
   roll = roll_die()
   print(f"You rolled a {roll}")
