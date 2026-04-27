@@ -42,6 +42,7 @@ The knowledge tagging system now uses sequential learning paths instead of flat 
 The project now includes a test suite and a dev container configuration for streamlined development:
 
 - **Test suite**: added `test_sequential_tagging.py`, `test_sequential_minimal.py`, `test_simplified_relationships.py`, `test_l1_l6_simple.py`, and `test_app_startup.py` covering sequential path generation, relationship extraction, and app startup filtering logic
+- **L1-L6 smoke test**: `test_l1_l6_simple.py` calls `process_new_link()` against a sample URL and prints the full L1-L6 hierarchy (L1/L2 as strings, L3-L6 as arrays) joined with arrows for quick visual verification. Run with `python test_l1_l6_simple.py` — note that this makes a live OpenAI API call
 - **Dev container**: added `.devcontainer/devcontainer.json` with Python 3.11, automatic dependency installation, and Streamlit auto-launch on port 8501
 - **Speed benchmarking**: added `speed_test.py` for profiling tagging performance across batch sizes
 
